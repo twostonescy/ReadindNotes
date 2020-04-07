@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://www.cnblogs.com/zjiaxing/p/5557549.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="never">
+    <title>gcc/g++ 实战之编译的四个过程 - jason来自星星 - 博客园</title>
+<meta property="og:description" content="gcc和g++分别是GNU(一个开源组织）的c&amp;c++编译器 对于.c后缀的文件，gcc把它当做是C程序，g++当做是C++程序；对于.cpp后缀的文件，gcc和g++都会当做c++程序。gc">
+    <link type="text/css" rel="stylesheet" href="./gcc_g++ 实战之编译的四个过程 _files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./gcc_g++ 实战之编译的四个过程 _files/bundle-BlackLowKey.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./gcc_g++ 实战之编译的四个过程 _files/bundle-BlackLowKey-mobile.css">
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/zjiaxing/rss">
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/zjiaxing/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/zjiaxing/wlwmanifest.xml">
+    <script src="./gcc_g++ 实战之编译的四个过程 _files/amp4ads-host-v0.js.下载"></script><script src="./gcc_g++ 实战之编译的四个过程 _files/pubads_impl_rendering_2019050701.js.下载"></script><script async="" src="./gcc_g++ 实战之编译的四个过程 _files/analytics.js.下载"></script><script type="text/javascript" src="./gcc_g++ 实战之编译的四个过程 _files/encoder.js.下载"></script><script src="./gcc_g++ 实战之编译的四个过程 _files/jquery-2.2.0.min.js.下载"></script>
+    <script>var currentBlogId=287791;var currentBlogApp='zjiaxing',cb_enable_mathjax=false;var isLogined=false;</script>
+    <script src="./gcc_g++ 实战之编译的四个过程 _files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="preload" href="./gcc_g++ 实战之编译的四个过程 _files/f.txt" as="script"><script type="text/javascript" src="./gcc_g++ 实战之编译的四个过程 _files/f.txt"></script><script src="./gcc_g++ 实战之编译的四个过程 _files/pubads_impl_2019050701.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-33/html/container.html"></head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/zjiaxing/"><img id="blogLogo" src="./gcc_g++ 实战之编译的四个过程 _files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/zjiaxing/">jason来自星星</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/zjiaxing/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/jason%E6%9D%A5%E8%87%AA%E6%98%9F%E6%98%9F">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/zjiaxing/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/zjiaxing/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 26&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 9</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/zjiaxing/p/5557549.html">gcc/g++ 实战之编译的四个过程</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><div><span style="font-size: 13px; font-family: 宋体;">gcc和g++分别是GNU(一个开源组织）的c&amp;c++编译器</span></div>
+<div>&nbsp;</div>
+<div>
+<p><span style="font-size: 13px; font-family: 宋体;">对于.c后缀的文件，gcc把它当做是C程序，g++当做是C++程序；对于.cpp后缀的文件，gcc和g++都会当做c++程序。gcc可以根据后缀名为.c或.cpp分别按c程序和c++程序来编译，但是g++无论是.c或.cpp都统一按c++程序来编译。</span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">编译阶段，g++会调用gcc，链接阶段通常会用g++来完成，g++在编译的过程中，其实是调用gcc按照c++程序来编译的。即编译工作最终都是由gcc来完成的。这是因为gcc命令不能自动和c++程序使用的库连接。而g++则会自动调用链接的c++库。</span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">gcc可以用来编译c++但是它不会自动调用链接的c++库，你需要自己手动链接，使用如下命令：</span></p>
+<div class="cnblogs_code">
+<pre>gcc main.cpp -lstdc++</pre>
+</div>
+<p><span style="font-size: 13px; font-family: 宋体;">注：main.cpp&nbsp;-lstdc++ 位置不能换，换了位置笔者编译出现了 main.cpp:(.text+0x2d):undefined&nbsp;reference to`std::cout' 等一系列的错误</span></p>
+<p><br><strong><span style="font-size: 14px; font-family: 宋体;">gcc/g++在执行编译工作的时候，分为以下四个过程：</span></strong></p>
+<p><span style="font-size: 13px; font-family: 宋体;">1.预处理，生成.i的文件</span><br><span style="font-size: 13px; font-family: 宋体;">2.将预处理后的文件转换成汇编语言，生成.s文件</span><br><span style="font-size: 13px; font-family: 宋体;">3.汇编变为目标代码(机器代码)生成.o的文件</span><br><span style="font-size: 13px; font-family: 宋体;">4.连接目标代码,生成可执行程序</span></p>
+<h1><strong><span style="font-size: 13px; font-family: 宋体;">下面用个小例子说明这四个过程：</span></strong></h1>
+<div><span style="font-size: 13px; font-family: 宋体;"><span style="font-size: 13px; font-family: 宋体;">&nbsp;//建个main.cpp</span></span>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./gcc_g++ 实战之编译的四个过程 _files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">This is the test code</span>
+ #include &lt;iostream&gt;</pre>
+<pre> using namespace<span> std;  </span></pre>
+<pre><span style="color: #0000ff;"> #define</span> pi 3.14<br> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">int</span> t = <span style="color: #800080;">1</span><span style="color: #000000;">; <br>
+ </span><span style="color: #0000ff;">int</span><span style="color: #000000;"> main()
+ {
+  　　cout</span>&lt;&lt;<span style="color: #800000;">"</span><span style="color: #800000;">Hello World: The t+pi is </span><span style="color: #800000;">"</span>&lt;&lt;t+pi&lt;&lt;<span style="color: #000000;">endl;
+  　　</span><span style="color: #0000ff;">return</span> <span style="color: #800080;">0</span><span style="color: #000000;">;
+  } </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./gcc_g++ 实战之编译的四个过程 _files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></p>
+</div>
+<div><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></div>
+<h1><span style="font-size: 14px;"><strong><span style="font-family: 宋体;"> （1）预处理阶段</span></strong></span></h1>
+</div>
+<div>
+<div class="cnblogs_code">
+<pre>g++ -E main.cpp &gt; main.i </pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px; font-family: 宋体;">预处理后的文件 linux下以.i为后缀名，这个过程只激活预处理，不生成文件,因此你需要把它重定向到一个输出文件里 。</span></p>
+<h2><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></h2>
+<h1><span style="font-size: 14px; font-family: 宋体;">这一步的功能：</span></h1>
+<p><span style="font-size: 13px; font-family: 宋体;">宏的替换，还有注释的消除，还有找到相关的库文件，</span><span style="font-size: 13px;"><span style="font-family: 宋体;">将</span><span style="font-family: 宋体;">#include</span><span style="line-height: 1.5;">文件的全部内容插入。若用&lt;&gt;括起文件则在系统的INCLUDE目录中寻找文件，若用" "括起文件则在当前目录中寻找文件。</span></span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">用编辑器打开main.i会发现有很多很多代码，你只需要看最后部分就会发现，预处理做了宏的替换，还有注释的消除，可以理解为无关代码的清除。</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre>cat main.i</pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px; font-family: 宋体;">下面是main.i文件的最后部分，可以看见宏的替换和注释的消除。</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px; font-family: 宋体;">&nbsp;<img src="./gcc_g++ 实战之编译的四个过程 _files/966989-20160603202057055-1394044460.png" alt=""></span></p>
+<div><span style="font-size: 13px; font-family: 宋体;"><img src="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/258d67e0b06e4289b9bcb556295fee78/g%2B%2B%E9%A2%84%E7%BC%96%E8%AF%91.png" alt="" data-media-type="image" data-attr-org-src-id="F6400CB11F6D40AB8C9EEB5DB5BB423C" data-attr-org-img-file="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/258d67e0b06e4289b9bcb556295fee78/g%2B%2B%E9%A2%84%E7%BC%96%E8%AF%91.png"></span></div>
+</div>
+<div>
+<h1><span style="font-size: 14px; font-family: 宋体;">（2）将预处理后的文件转换成汇编语言,生成.s文件</span></h1>
+<div>
+<div class="cnblogs_code">
+<pre>g++ -S main.cpp</pre>
+</div>
+</div>
+<div>
+<h1><span style="font-size: 13px; font-family: 宋体;">这一步的功能：</span></h1>
+<span style="font-size: 13px; font-family: 宋体;"> 生成main.s文件，.s文件表示是汇编文件，用编辑器打开就都是汇编指令。</span></div>
+<div><br>
+<div class="cnblogs_code">
+<pre>cat main.s</pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">下面是main.s文件的一部分：</span></p>
+<p><span style="font-size: 13px;"><img src="./gcc_g++ 实战之编译的四个过程 _files/966989-20160603202238461-1629663226.png" alt=""></span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></p>
+<div><span style="font-size: 13px; font-family: 宋体;"><img src="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/1c232cc716e84ecb995486083ee56b12/g%2B%2B%E6%B1%87%E7%BC%96.png" alt="" data-media-type="image" data-attr-org-src-id="7B4F47AE238D48DD943094DEAD628B2A" data-attr-org-img-file="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/1c232cc716e84ecb995486083ee56b12/g%2B%2B%E6%B1%87%E7%BC%96.png"></span></div>
+</div>
+<h1><strong><span style="font-size: 14px; font-family: 宋体;">（3）汇编变为目标代码(机器代码)生成.o的文件</span></strong></h1>
+<div>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre>g++ -c main.cpp </pre>
+</div>
+<p><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></p>
+<div>
+<div>
+<h1><span style="font-size: 13px; font-family: 宋体;">这一步的功能：</span></h1>
+</div>
+<div><span style="font-size: 13px; font-family: 宋体;">.o是gcc生成的目标文件，用编辑器打开就都是二进制机器码。</span></div>
+</div>
+</div>
+<div><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></div>
+<div>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre>cat main.o</pre>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 13px;">下面是main.o文件的一部分:</span></p>
+<p><span style="font-size: 13px;"><img src="./gcc_g++ 实战之编译的四个过程 _files/966989-20160603202442321-1476028639.png" alt=""></span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></p>
+<div><span style="font-size: 13px; font-family: 宋体;"><img src="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/783bac06595f498aa1b540f9c7fd7f91/g%2B%2B%E4%BA%8C%E8%BF%9B%E5%88%B6.png" alt="" data-media-type="image" data-attr-org-src-id="000B092A073E47BFACCBDDE6EAEF1940" data-attr-org-img-file="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/783bac06595f498aa1b540f9c7fd7f91/g%2B%2B%E4%BA%8C%E8%BF%9B%E5%88%B6.png"></span></div>
+</div>
+</div>
+<div>
+<h1><span style="font-size: 14px; font-family: 宋体;">（4）连接目标代码，生成可执行程序</span></h1>
+<div>
+<div class="cnblogs_code">
+<pre>g++ main.o -o main //生成的可执行程序名为main ，如果执行命令 g++&nbsp;main.o  这样默认生成a.out，也就是main与a.out是一个只是名字不同而已</pre>
+</div>
+<p>&nbsp;</p>
+下面是main文件的一部分:</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><img src="./gcc_g++ 实战之编译的四个过程 _files/966989-20160603204537946-976183891.png" alt=""></div>
+<div>&nbsp;</div>
+<div>
+<div class="cnblogs_code">
+<pre>ls</pre>
+</div>
+<p><img src="./gcc_g++ 实战之编译的四个过程 _files/966989-20160603204712883-550270417.png" alt=""></p>
+<p>&nbsp;</p>
+</div>
+<div>
+<div><span style="font-size: 13px; font-family: 宋体;"><img src="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/c713083478ac48f38f8a82aa007b4e01/g%2B%2B%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BA%8C%E8%BF%9B%E5%88%B6.png" alt="" data-media-type="image" data-attr-org-src-id="F28CA1B818B44E288B97E6323CE70983" data-attr-org-img-file="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/c713083478ac48f38f8a82aa007b4e01/g%2B%2B%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BA%8C%E8%BF%9B%E5%88%B6.png"></span></div>
+</div>
+<div>
+<div class="cnblogs_code">
+<pre>./main</pre>
+</div>
+<p><img src="./gcc_g++ 实战之编译的四个过程 _files/966989-20160603204736024-806168188.png" alt=""></p>
+</div>
+<div><span style="font-size: 13px; font-family: 宋体;"><img src="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/abc87fd7f6214bb8a19cc3823a9ec494/g%2B%2B%E7%BB%93%E6%9E%9C.png" alt="" data-media-type="image" data-attr-org-src-id="FADD1160729B49FF84B37A398B695E93" data-attr-org-img-file="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/abc87fd7f6214bb8a19cc3823a9ec494/g%2B%2B%E7%BB%93%E6%9E%9C.png"></span></div>
+<div><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></div>
+<div>&nbsp;</div>
+<div><span style="font-size: 13px; font-family: 宋体;"><img src="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/bccb6272bfb94570a40094ec38148ba2/g%2B%2Bls.png" alt="" data-media-type="image" data-attr-org-src-id="17AD289CA229414F9449C05C9F2DB47C" data-attr-org-img-file="file:///C:/Users/lenovo/AppData/Local/YNote/data/zjiaxingn_neu@163.com/bccb6272bfb94570a40094ec38148ba2/g%2B%2Bls.png"></span></div>
+<p><span style="font-size: 13px; font-family: 宋体;">在成功编译之后，就进入了链接阶段。在这里涉及到一个重要的概念：函数库(可以这么理解就是不带main（）函数的.cpp生成的)。</span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">读者可以重新查看这个小程序，在这个程序中并没有定义”cout”的函数(准确说cout不是函数，cout却很独特：既不是函数，似乎也不是C++特别规定出来的像if，for一类有特殊语法的“语句”，其实说到底还是函<span style="color: #000000;">数调用</span>，不过这函数有些特殊，用的是运算符重载，确切地说是重载了“&lt;&lt;”运算符。这里如果用pritf()函数说明会更好，暂且当做函数理解吧）实现，且在预编译中包含进的”iostream”中也只有该函数的声明，而没有定义函数的实现，那么，是在哪里实现”cout”函数的呢？系统把这些函数实现都被做到名为stdc++的库文件中去了，在没有特别指定时，g++会到系统默认的搜索路径”/usr/lib”下进行查找，也就是链接到stdc++库函数中去，这样就能实现函数”cout”了，而这也就是链接的作用。</span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">函数库一般分为静态库和动态库两种。</span></p>
+<p><span style="font-family: 宋体;"><span style="font-size: 13px; line-height: 19.5px;">下一篇将具体介绍。</span></span></p>
+<p><span style="font-size: 13px; font-family: 宋体;">&nbsp;</span></p>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/zjiaxing/tag/gcc%2Fg%2B%2B/">gcc/g++</a>, <a href="https://www.cnblogs.com/zjiaxing/tag/%E9%A2%84%E5%A4%84%E7%90%86/">预处理</a>, <a href="https://www.cnblogs.com/zjiaxing/tag/%E6%B1%87%E7%BC%96/">汇编</a>, <a href="https://www.cnblogs.com/zjiaxing/tag/%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81/">目标代码</a>, <a href="https://www.cnblogs.com/zjiaxing/tag/%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F/">可执行程序</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5557549,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;80c6642a-c525-e611-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./gcc_g++ 实战之编译的四个过程 _files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./gcc_g++ 实战之编译的四个过程 _files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zjiaxing/" target="_blank"><img src="./gcc_g++ 实战之编译的四个过程 _files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zjiaxing/">jason来自星星</a><br>
+            <a href="http://home.cnblogs.com/u/zjiaxing/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/zjiaxing/followers">粉丝 - 49</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;80c6642a-c525-e611-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5557549,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">3</span>
+    </div>
+    <div class="buryit" onclick="votePost(5557549,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/zjiaxing/p/5553974.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/zjiaxing/p/5553974.html" title="发布于2016-06-02 18:08">CMake error:System Error:No such file or directory  CMake error:Could not open file for write in copy operation xxxx.ros_Config.cmake.tmp.</a><br><a href="https://www.cnblogs.com/zjiaxing/p/5557629.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/zjiaxing/p/5557629.html" title="发布于2016-06-03 21:15">gcc/g++实战之动态链接库与静态链接库编写</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-06-03 20:49</span> <a href="https://www.cnblogs.com/zjiaxing/">jason来自星星</a> 阅读(<span id="post_view_count">22305</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5557549" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/zjiaxing/p/5557549.html#" onclick="AddToWz(5557549);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=287791,cb_entryId=5557549,cb_blogApp=currentBlogApp,cb_blogUserGuid='80c6642a-c525-e611-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/6/3 20:49:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/zjiaxing/p/5557549.html#3786107" class="layer">#1楼</a><a name="3786107" id="comment_anchor_3786107"></a><span id="comment-maxId" style="display:none;">3786107</span><span id="comment-maxDate" style="display:none;">2017/9/16 18:15:15</span>  <span class="comment_date">2017-09-16 18:15</span> <a id="a_comment_author_3786107" href="https://www.cnblogs.com/tyw66/" target="_blank">tyw66</a> <a href="http://msg.cnblogs.com/send/tyw66" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3786107" class="blog_comment_body">赞！帮我大忙了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3786107,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3786107,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3786107_avatar" style="display:none;">http://pic.cnblogs.com/face/1047803/20161022161250.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/zjiaxing/p/5557549.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/zjiaxing/p/5557549.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="https://www.bagevent.com/event/2195041?bag_track=13072958" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-看雪&#39;)">【活动】看雪2019安全开发者峰会，共话安全领域焦点</a><br><a href="https://ke.qq.com/adActivity.html?name=xiangxueketang2" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-享学&#39;)">【培训】Java程序员年薪40W，他1年走了别人5年的路</a><br></div>
+<div id="opt_under_post"></div>
+<script async="async" src="./gcc_g++ 实战之编译的四个过程 _files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CIb_gvWNmOICFY6JwgodJ3ENQw"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./gcc_g++ 实战之编译的四个过程 _files/saved_resource.html"></iframe></div></div>
+</div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/lisuyun/p/4166659.html" target="_blank" onclick="clickRecomItmem(4166659)">gcc/g++基本命令简介</a><br>·  <a href="https://www.cnblogs.com/hualalasummer/p/3694979.html" target="_blank" onclick="clickRecomItmem(3694979)">GCC编程四个过程:预处理-编译-汇编-链接</a><br>·  <a href="https://www.cnblogs.com/sea-stream/p/10564680.html" target="_blank" onclick="clickRecomItmem(10564680)">gcc执行过程</a><br>·  <a href="https://www.cnblogs.com/fire909090/p/6781523.html" target="_blank" onclick="clickRecomItmem(6781523)">gcc/g++ 实战之编译的四个过程</a><br>·  <a href="https://www.cnblogs.com/zzdbullet/p/9894596.html" target="_blank" onclick="clickRecomItmem(9894596)">gcc编译过程</a><br></div></div>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CIf_gvWNmOICFY6JwgodJ3ENQw"><div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./gcc_g++ 实战之编译的四个过程 _files/saved_resource(1).html"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/625197/" target="_blank">亚马逊AWS首席云计算企业顾问：我们正在经历技术换档期</a><br> ·  <a href="https://news.cnblogs.com/n/625196/" target="_blank">字节跳动再推教育产品“大力课堂”，花两千万布局K12网校</a><br> ·  <a href="https://news.cnblogs.com/n/625194/" target="_blank">Windows 10 将拥抱无密码登录</a><br> ·  <a href="https://news.cnblogs.com/n/625193/" target="_blank">边种地边上 Netflix 煲剧，美国农场上刮起流媒体革命</a><br> ·  <a href="https://news.cnblogs.com/n/625192/" target="_blank">下沉，下沉！教育培训行业的中场战事</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/zjiaxing/">jason来自星星</a><br>园龄：<a href="https://home.cnblogs.com/u/zjiaxing/" title="入园时间：2016-05-30">2年11个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/zjiaxing/followers/">49</a><br>关注：<a href="https://home.cnblogs.com/u/zjiaxing/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;80c6642a-c525-e611-9fc1-ac853d9f53cc&#39;)">+加关注</a></div><script>getFollowStatus('80c6642a-c525-e611-9fc1-ac853d9f53cc')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/04/01&#39;);return false;">&lt;</a></td><td align="center">2019年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td class="CalTodayDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/zjiaxing/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/zjiaxing/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/zjiaxing/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/zjiaxing/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/zjiaxing/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/zjiaxing/tag/ROS/">ROS</a>(4)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/gcc%2Fg%2B%2B/">gcc/g++</a>(2)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E5%AF%BC%E8%88%AA/">导航</a>(2)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">命名空间</a>(2)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81/">目标代码</a>(1)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E5%86%85%E6%A0%B8/">内核</a>(1)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0/">启动参数</a>(1)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E5%85%A8%E5%B1%80%E5%AF%BC%E8%88%AA/">全局导航</a>(1)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E5%85%A8%E5%B1%80%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">全局命名空间</a>(1)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/%E5%85%A5%E9%97%A8/">入门</a>(1)</li><li><a href="https://www.cnblogs.com/zjiaxing/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/zjiaxing/category/835625.html">c++语法</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/zjiaxing/category/835611.html">cmake 实战</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/zjiaxing/category/835612.html">ROS机器人操作系统</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/zjiaxing/category/835626.html">算法</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/zjiaxing/archive/2016/06.html">2016年6月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="https://www.cnblogs.com/zjiaxing/archive/2016/05.html">2016年5月 (10)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/zjiaxing/p/5616653.html#4253222">1. Re:ORB特征提取与匹配</a></li>
+        <li class="recent_comment_body">描述子原理没讲清楚，尺度不变性？旋转不变中确定了质心，找到了特征点方向然后呢？</li>
+        <li class="recent_comment_author">--arpenx</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/zjiaxing/p/5616653.html#4140389">2. Re:ORB特征提取与匹配</a></li>
+        <li class="recent_comment_body">写的不错，👍</li>
+        <li class="recent_comment_author">--DrHW</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/zjiaxing/p/5541733.html#4050463">3. Re:由浅到深理解ROS（1）</a></li>
+        <li class="recent_comment_body">楼主写的很好</li>
+        <li class="recent_comment_author">--lion_zheng</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/zjiaxing/p/5557629.html#3786392">4. Re:gcc/g++实战之动态链接库与静态链接库编写</a></li>
+        <li class="recent_comment_body">3.链接静态库<br>g++ main.cpp -static -L. -lstatic -o main //....</li>
+        <li class="recent_comment_author">--tyw66</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/zjiaxing/p/5557549.html#3786107">5. Re:gcc/g++ 实战之编译的四个过程</a></li>
+        <li class="recent_comment_body">赞！帮我大忙了</li>
+        <li class="recent_comment_author">--tyw66</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/zjiaxing/p/5542614.html">1. 由浅到深理解ROS（5）- launch启动文件的理解与编写(25995)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5616653.html">2. ORB特征提取与匹配(23776)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5557549.html">3. gcc/g++ 实战之编译的四个过程(22304)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5559382.html">4. ROS导航之参数配置和自适应蒙特卡罗定位(11617)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5548265.html">5. 视觉SLAM之词袋（bag of words） 模型与K-means聚类算法浅析（1）(5980)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/zjiaxing/p/5616653.html">1. ORB特征提取与匹配(2)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5542614.html">2. 由浅到深理解ROS（5）- launch启动文件的理解与编写(1)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5541733.html">3. 由浅到深理解ROS（1）(1)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5557629.html">4. gcc/g++实战之动态链接库与静态链接库编写(1)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5557549.html">5. gcc/g++ 实战之编译的四个过程(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/zjiaxing/p/5616653.html">1. ORB特征提取与匹配(7)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5542614.html">2. 由浅到深理解ROS（5）- launch启动文件的理解与编写(3)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5557549.html">3. gcc/g++ 实战之编译的四个过程(3)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5559382.html">4. ROS导航之参数配置和自适应蒙特卡罗定位(2)</a></li><li><a href="https://www.cnblogs.com/zjiaxing/p/5567655.html">5. ZeroMQ一个更小、更快、更简单的智能传输层协议(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2019 jason来自星星
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+
+</body></html>

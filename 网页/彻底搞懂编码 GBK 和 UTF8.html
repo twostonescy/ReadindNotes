@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/hehheai/p/6510879.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+    <title>彻底搞懂编码 GBK 和 UTF8 - 程序员小王啊 - 博客园</title>
+<meta property="og:description" content="首先来看一下常用的编码有哪些，截图自Notepad++。其中ANSI在中国大陆即为GBK（以前是GB2312），最常用的是 GBK 和 UTF8无BOM 编码格">
+    <link type="text/css" rel="stylesheet" href="./彻底搞懂编码 GBK 和 UTF8_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./彻底搞懂编码 GBK 和 UTF8_files/bundle-coffee.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./彻底搞懂编码 GBK 和 UTF8_files/bundle-coffee-mobile.css">
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/hehheai/rss">
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/hehheai/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/hehheai/wlwmanifest.xml">
+    <script src="./彻底搞懂编码 GBK 和 UTF8_files/amp4ads-host-v0.js.下载"></script><script src="./彻底搞懂编码 GBK 和 UTF8_files/pubads_impl_rendering_2019050701.js.下载"></script><script async="" src="./彻底搞懂编码 GBK 和 UTF8_files/analytics.js.下载"></script><script src="./彻底搞懂编码 GBK 和 UTF8_files/jquery-2.2.0.min.js.下载"></script>
+    <script>var currentBlogId=337355;var currentBlogApp='hehheai',cb_enable_mathjax=false;var isLogined=false;</script>
+    <script src="./彻底搞懂编码 GBK 和 UTF8_files/blog-common.js.下载" type="text/javascript"></script>
+<link rel="preload" href="./彻底搞懂编码 GBK 和 UTF8_files/f.txt" as="script"><script type="text/javascript" src="./彻底搞懂编码 GBK 和 UTF8_files/f.txt"></script><script src="./彻底搞懂编码 GBK 和 UTF8_files/pubads_impl_2019050701.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-33/html/container.html"></head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/hehheai/"><img id="blogLogo" src="./彻底搞懂编码 GBK 和 UTF8_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/hehheai/">程序员小王啊</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/hehheai/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B0%8F%E7%8E%8B%E5%95%8A">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/hehheai/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="https://www.cnblogs.com/hehheai/rss"><img src="./彻底搞懂编码 GBK 和 UTF8_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 69&nbsp;
+文章- 0&nbsp;
+评论- 8&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/hehheai/p/6510879.html">彻底搞懂编码 GBK 和 UTF8</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><img src="./彻底搞懂编码 GBK 和 UTF8_files/681503-20161122160948550-68869351.png" alt="" width="468" height="219"></p>
+<p>首先来看一下常用的编码有哪些，截图自Notepad++。其中ANSI在中国大陆即为GBK（以前是GB2312），最常用的是&nbsp;GBK&nbsp;和&nbsp;UTF8无BOM&nbsp;编码格式。后面三个都是有BOM头的文本格式，UCS-2即为人们常说的Unicode编码，又分为大端、小端。</p>
+<p>所谓BOM头（Byte Order Mark）就是文本文件中开始的几个并不表示任何字符的字节，用二进制编辑器（如bz.exe）就能看到了。</p>
+<ol>
+<li>UTF8的BOM头为 0xEF 0xBB 0xBF</li>
+<li>Unicode大端模式为 0xFE 0xFF</li>
+<li>Unicode小端模式为 0xFF 0xFE</li>
+</ol>
+<p><img src="./彻底搞懂编码 GBK 和 UTF8_files/681503-20161122175231956-1529321757.jpg" alt="" width="481" height="208"></p>
+<h3>何为GBK，何为GB2312，与区位码有何渊源？</h3>
+<p>区位码是早些年(1980)中国制定的一个编码标准，如果有玩过小霸王学习机的话，应该会记得有个叫做“区位”的输入法（没记错的话是按F4选择）。就是打四个数字然后就出来汉字了，什么原理呢。请看下面的区位码表，每一个字符都有对应一个编号。其中前两位为“区”，后两位为“位”，中文汉字的编号<strong>区号是从16开始</strong>的，位号从1开始。前面的区号有一些符号、数字、字母、注音符号（台）、制表符、日文等等。</p>
+<p>而GB2312编码就是基于区位码的，用双字节编码表示中文和中文符号。一般编码方式是：0xA0+区号，0xA0+位号。如下表中的 “安”，区位号是1618（十进制），那么“安”字的GB2312编码就是 0xA0+16&nbsp; 0xA0+18 也就是 0xB0 0xB2 。根据区位码表，GB2312的汉字编码范围是0xB0A1~0xF7FE</p>
+<p><a href="http://www.xuebuyuan.com/879025.html" target="_blank">区位码表节选</a></p>
+<p><img src="./彻底搞懂编码 GBK 和 UTF8_files/681503-20161122175638862-1260639911.jpg" alt="" width="385" height="472"><img src="./彻底搞懂编码 GBK 和 UTF8_files/681503-20161122175709753-1471972695.jpg" alt="" width="439" height="240"></p>
+<p>可能大家注意到了，区位码里有英文和数字，按道理说是不是也应该是双字节的呢。而一般情况下，我们见到的英文和数字是单字节的，以ASCII编码，也就是说现代的GBK编码是兼容ASCII编码的。比如一个数字2，对应的二进制是0x32，而不是 0xA3 0xB2。那么问题来了，0xA3 0xB2 又对应到什么呢？还是２（笑）。注意看了，这里的２跟2是不是有点不太一样？！确实是不一样的。这里的双字节２是全角的二，ASCII的2是半角的二，一般输入法里的切换全角半角就是这里不同。</p>
+<p>如果留意过早些年的手机（功能机），会发现人名中常见的“燊”字是打不出来的。为什么呢？因为早期的区位码表里面并没有这些字，也就是说早期的GB2312也是没有这些字的。到后来的GBK（1995）才补充了大量的汉字进去，当然现在的安卓苹果应该都是GBK字库了。再看看这些补充的汉字的字节码&nbsp;燊 0x9F 0xF6&nbsp;。和前面说到的GB2312不同，有的字的编码比&nbsp;0xA0 0xA0&nbsp;还小，难道新补充的区位号还能是负的？？其实不然，这次的补充只补充了计算机编码表，并没有补充区位码表。也就是说区位码表并没有更新，用区位码打字法还是打不出这些字，而网上的反向区位码表查询也只是按照GBK的编码计算，并不代表字与区位号完全对应。时代的发展，区位码表早已经是进入博物馆的东西了。</p>
+<p>Big5是与GB2312同时期的一种台湾地区繁体字的编码格式。后来GBK编码的制定，把Big5用的繁体字也包含进来（但编码不兼容），还增加了一些其它的中文字符。细心的朋友可能还会发现，台湾香港用的繁体字（如KTV里的字幕）跟大陆用的繁体字还有点笔画上的不一样，其实这跟编码无关，是字体的不同，大陆一般用的是宋体楷体黑体，港澳台常用的是明体（<a href="http://linux.vbird.org/linux_basic/" target="_blank">鸟哥Linux私房菜</a>用的是新細明體）。GBK总体编码范围为0x8140~0xFEFE，首字节在 0x81~0xFE 之间，尾字节在 0x40~0xFE 之间，剔除 xx7F 一条线。详细编码表可以<a href="http://www.qqxiuzi.cn/zh/hanzi-gbk-bianma.php" target="_blank">参考这个列表</a>。微软Windows安排给GBK的code page（代码页）是CP936，所以有时候看到编码格式是CP936，其实就是GBK的意思。2000年和2005年，国家又先后两次发布了GB18030编码标准，兼容GBK，新增四字节的编码，但比较少见。</p>
+<p>同一个编码文件里，怎么区分ASCII和中文编码呢？从<a href="http://www.asciitable.com/" target="_blank">ASCII表</a>我们知道标准ASCII只有128个字符，0~127即0x00~0x7F（0111 1111）。所以区分的方法就是，高字节的最高位为0则为ASCII，为1则为中文。</p>
+<h3>UTF8编码 与 Unicode编码</h3>
+<p>GBK是中国标准，只在中国使用，并没有表示大多数其它国家的编码；而各国又陆续推出各自的编码标准，互不兼容，非常不利于全球化发展。于是后来国际组织发行了一个全球统一编码表，把全球各国文字都统一在一个编码标准里，名为Unicode。很多人都很疑惑，到底UTF8与Unicode两者有什么关系？如果要类比的话，UTF8相当于GB2312，Unicode相当于区位码表，不同的是它们之间的编号范围和转换公式。那什么是原始的Unicode编码呢？如果你用过PHP的话，json_encode函数默认会把中文编码成为Unicode，比如“首发于博客园”就会转码成“\u9996\u53d1\u4e8e\u535a\u5ba2\u56ed”。可以看到每个字都变成了&nbsp;<strong>\uXXXX</strong>&nbsp;的形式，这个就是文字的对应Unicode编码，\u表示Unicode的意思，网上也有用U+表示unicode。现行的Unicode编码标准里，绝大多数程序语言只支持<strong>双字节</strong>。英文字母、标点也收纳在Unicode编码中。有兴趣的可以在<a href="http://tool.chinaz.com/tools/unicode.aspx" target="_blank">站长工具</a>里尝试“中文转Unicode”，可以得到你输入文字的Unicode编码。</p>
+<p>因为英文字符也全部使用双字节，存储成本和流量会大大地增加，所以Unicode编码大多数情况并没有被原始地使用，而是被转换编码成UTF8。下表就是其转换公式：</p>
+<p><img src="./彻底搞懂编码 GBK 和 UTF8_files/681503-20161123112433971-1223752015.png" alt=""></p>
+<p>第一种：Unicode从 0x0000 到 0x007F 范围的，是不是有点熟悉？对，其实就是标准ASCII码里面的内容，所以直接去掉前面那个字节 0x00，使用其第二个字节（与ASCII码相同）作为其编码，即为单字节UTF8。</p>
+<p>第二种：Unicode从 0x0080 到 0x07FF 范围的，转换成双字节UTF8。</p>
+<p>第三种：Unicode从 0x8000 到 0xFFFF 范围的，转换成三字节UTF8，一般中文都是在这个范围里。</p>
+<p>第四种：超过双字节的Unicode目前还没有广泛支持，仅见emoji表情在此范围。</p>
+<p>例如“博”字的Unicode编码是\u535a。0x535A在0x0800~0xFFFF之间，所以用3字节模板 1110yyyy 10yyyyxx 10xxxxxx。将535A写成二进制是：0101 0011 0101 1010，高八位分别代替y，低八位分别代替x，得到 11100101 10001101 10011010，也就是 0xE58D9A ，这就是博字的UTF8编码。</p>
+<p>前面提到，GBK的编码里英文字符有全角和半角之分，全角为GBK的标准编码过的双字节２，半角为ASCII的单字节2。那现在UTF8是全部用一个公式，理论上只有半角的2的，怎么支持全角的２呢？哈哈，结果是Unicode为中国特色的全角英文字符也单独分配了编码，简单粗暴。比如全角的２的Unicode编码是 \uFF12，转换到UTF8就是 0xEFBC92。</p>
+<p>文章开头有说到 UCS-2，其实UCS-2就是原始的双字节Unicode编码，用二进制编辑器打开UCS-2大端模式的文本文件，从左往右看，看到的就是每个字符的Unicode编码了。至于什么是大端小端，就是字节的存放顺序不同，这一般是嵌入式编程的范畴。</p>
+<h3>如何区分一个文本是无BOM的UTF8还是GBK</h3>
+<p>前面说到的几种编码，其中有的是有BOM头的，可以直接根据BOM头区分出其编码。有两个是没有BOM头的，UTF8和GBK，那么两者怎么区分呢？答案是，只能按大量的编码分析来区分。目前识别准确率很高的有：Notepad++等一些常用的IDE，PHP的mb_系列函数，python的chardet库及其它语言衍生版如jchardet，<a href="https://github.com/aadsm/jschardet" target="_blank">jschardet&nbsp;</a>等（请自行github）。</p>
+<p>那么这些库是怎么区分这些编码的呢？那就是词库，你会看到库的源码里有大量的数组，其实就是对应一个编码里的常见词组编码组合。同样的文件字节流在一个词组库里的匹配程度越高，就越有可能是该编码，判断的准确率就越大。而文件中的中文越少越零散，判断的准确率就越低。</p>
+<h3>关于ASCII</h3>
+<p>文中多次提及ASCII编码，其实这应该是每个程序员都非常熟悉、认真了解的东西。对于嵌入式开发的人来说，应该能随时在字符与ASCII码中转换，就像十六进制与二进制之间的转换一样。标准ASCII是128个，范围是0x00~0x7F (0000 0000~0111 0000) ，最高位为0。也有一个扩展ASCII码规则，把最高位也用上了，变成256个，但是这个扩展标准争议很大，没有得到推广，应该以后不会得到推广。因为无论是GBK还是UTF8，如果ASCII字符编码最高位能为1都会造成混乱无法解析。</p>
+<p>以GBK为例，如果ASCII的字符最高位也能是1，那么是应该截取一个解析为ASCII呢？还是截取两个解析为中文字符？这根本无法判断。UTF8也是同理，遇到 0xxx 开头则截取一个（即为标准ASCII）， 遇到 110x 开头则截取两个，遇到 1110 开头则截取三个，如果ASCII包含1开头的，则无法确定何时截取多少个。</p>
+<p>在哪里还能一睹扩展ASCII的真容呢？其实很简单，只要把网页的meta改成ASCII就行了&nbsp;<span class="cnblogs_code">&lt;meta&nbsp;charset="ASCII"&nbsp;/&gt;&nbsp;。又或者浏览器的编码选择“西方”，即可见到与平常所见不同的乱码。（截图为火狐）</span></p>
+<p><img src="./彻底搞懂编码 GBK 和 UTF8_files/681503-20161207220916804-151620761.jpg" alt="" width="157" height="202"></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6510879,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;0e7d36eb-98fc-e611-845c-ac853d9f53ac&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./彻底搞懂编码 GBK 和 UTF8_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./彻底搞懂编码 GBK 和 UTF8_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/hehheai/" target="_blank"><img src="./彻底搞懂编码 GBK 和 UTF8_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/hehheai/">程序员小王啊</a><br>
+            <a href="http://home.cnblogs.com/u/hehheai/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/hehheai/followers">粉丝 - 9</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;0e7d36eb-98fc-e611-845c-ac853d9f53ac&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6510879,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">3</span>
+    </div>
+    <div class="buryit" onclick="votePost(6510879,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/hehheai/p/6510745.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/hehheai/p/6510745.html" title="发布于2017-03-06 16:54">TSQL Identity 用法全解</a><br><a href="https://www.cnblogs.com/hehheai/p/6510919.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/hehheai/p/6510919.html" title="发布于2017-03-06 17:16">移动端适配基础总结</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-03-06 17:13</span> <a href="https://www.cnblogs.com/hehheai/">程序员小王啊</a> 阅读(<span id="post_view_count">20173</span>) 评论(<span id="post_comment_count">2</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6510879" rel="nofollow">编辑</a> <a href="https://www.cnblogs.com/hehheai/p/6510879.html#" onclick="AddToWz(6510879);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=337355,cb_entryId=6510879,cb_blogApp=currentBlogApp,cb_blogUserGuid='0e7d36eb-98fc-e611-845c-ac853d9f53ac',cb_entryCreatedDate='2017/3/6 17:13:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/hehheai/p/6510879.html#3906889" class="layer">#1楼</a><a name="3906889" id="comment_anchor_3906889"></a> <span class="comment_date">2018-02-10 14:58</span> | <a id="a_comment_author_3906889" href="https://www.cnblogs.com/lyhabc/" target="_blank">桦仔</a> <a href="http://msg.cnblogs.com/send/%E6%A1%A6%E4%BB%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3906889" class="blog_comment_body">微软Windows安排给GBK的code page（代码页）是CP936，所以有时候看到编码格式是CP936，其实就是GBK的意思</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3906889,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3906889,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3906889_avatar" style="display:none;">http://pic.cnblogs.com/face/257159/20151110124424.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="https://www.cnblogs.com/hehheai/p/6510879.html#3906906" class="layer">#2楼</a><a name="3906906" id="comment_anchor_3906906"></a><span id="comment-maxId" style="display:none;">3906906</span><span id="comment-maxDate" style="display:none;">2018/2/10 15:25:07</span> <span class="comment_date">2018-02-10 15:25</span> | <a id="a_comment_author_3906906" href="https://www.cnblogs.com/lyhabc/" target="_blank">桦仔</a> <a href="http://msg.cnblogs.com/send/%E6%A1%A6%E4%BB%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3906906" class="blog_comment_body">微软Windows安排给GBK的code page（代码页）是CP936，所以有时候看到编码格式是CP936，其实就是GBK的意思</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3906906,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3906906,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3906906_avatar" style="display:none;">http://pic.cnblogs.com/face/257159/20151110124424.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/hehheai/p/6510879.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/hehheai/p/6510879.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="https://www.bagevent.com/event/2195041?bag_track=13072958" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-看雪&#39;)">【活动】看雪2019安全开发者峰会，共话安全领域焦点</a><br></div>
+<div id="opt_under_post"></div>
+<script async="async" src="./彻底搞懂编码 GBK 和 UTF8_files/gpt.js.下载"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;" data-google-query-id="CLury-W2kuICFdccKgodNu8Cjg"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C1_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="1" data-load-complete="true" src="./彻底搞懂编码 GBK 和 UTF8_files/saved_resource.html"></iframe></div></div>
+</div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/lllini/p/4433169.html" target="_blank" onclick="clickRecomItmem(4433169)">字符集和字符编码（Charset &amp; Encoding）</a><br>·  <a href="https://www.cnblogs.com/qooweds/p/5783474.html" target="_blank" onclick="clickRecomItmem(5783474)">ASCII、Unicode、GBK和UTF-8字符编码的区别联系</a><br>·  <a href="https://www.cnblogs.com/zhanghaozhe8462/p/5088939.html" target="_blank" onclick="clickRecomItmem(5088939)">字符集和字符编码</a><br>·  <a href="https://www.cnblogs.com/lixiaofou/p/8072168.html" target="_blank" onclick="clickRecomItmem(8072168)">ASCII、Unicode、GBK和UTF-8字符编码的区别联系</a><br>·  <a href="https://www.cnblogs.com/batsing/p/charset.html" target="_blank" onclick="clickRecomItmem(6089860)">彻底搞懂编码 GBK 和 UTF8</a><br></div></div>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;" data-google-query-id="CLyry-W2kuICFdccKgodNu8Cjg"><div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/1090369/C2_0" title="3rd party ad content" name="google_ads_iframe_/1090369/C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border: 0px; vertical-align: bottom;" data-google-container-id="2" data-load-complete="true" src="./彻底搞懂编码 GBK 和 UTF8_files/saved_resource(1).html"></iframe></div></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/625127/" target="_blank">科学家表示生活在深海中的鱼可以看到多种颜色</a><br> ·  <a href="https://news.cnblogs.com/n/625126/" target="_blank">韩国批捕两名三星高管 涉嫌会计欺诈</a><br> ·  <a href="https://news.cnblogs.com/n/625125/" target="_blank">将 CPU 从垃圾收集释放出来</a><br> ·  <a href="https://news.cnblogs.com/n/625124/" target="_blank">Google Chrome将不再允许网站劫持后退按钮</a><br> ·  <a href="https://news.cnblogs.com/n/625123/" target="_blank">深网|创始人消失、开盘破发、司机罢工，Uber的不完美上市</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/hehheai/">程序员小王啊</a><br>园龄：<a href="https://home.cnblogs.com/u/hehheai/" title="入园时间：2017-02-27">2年2个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/hehheai/followers/">9</a><br>关注：<a href="https://home.cnblogs.com/u/hehheai/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;0e7d36eb-98fc-e611-845c-ac853d9f53ac&#39;)">+加关注</a></div><script>getFollowStatus('0e7d36eb-98fc-e611-845c-ac853d9f53ac')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/04/01&#39;);return false;">&lt;</a></td><td align="center">2019年5月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/06/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalTodayDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/hehheai/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/hehheai/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/hehheai/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/hehheai/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/hehheai/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="https://www.cnblogs.com/hehheai/p/6510879.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/hehheai/archive/2017/03.html">2017年3月 (69)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/hehheai/p/6513789.html#4178840">1. Re:应用EF访问SQLite数据</a></li>
+        <li class="recent_comment_body">怎么支持 TransactionScope  ef</li>
+        <li class="recent_comment_author">--軒轅劍</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/hehheai/p/6509786.html#4121498">2. Re:Spark读写Hbase的二种方式对比</a></li>
+        <li class="recent_comment_body">楼主说的HBASEContext这个东西好像已经很老了 ，而且没有最近的更新</li>
+        <li class="recent_comment_author">--漂流小王子</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/hehheai/p/6509786.html#4017029">3. Re:Spark读写Hbase的二种方式对比</a></li>
+        <li class="recent_comment_body">Spark on HBase好像很多实现：<a href="https://www.cnblogs.com/hehheai/p/6510879.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--Akka47</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/hehheai/p/6506753.html#4011493">4. Re:ASP.NET Core 导入导出Excel xlsx 文件</a></li>
+        <li class="recent_comment_body">复制张贴的一点度不好玩   有数据库的实际操作的嘛</li>
+        <li class="recent_comment_author">--.乌鸦</li>
+        <li class="recent_comment_title"><a href="https://www.cnblogs.com/hehheai/p/6513801.html#3968351">5. Re:使用MongoDB和JSP实现一个简单的购物车系统</a></li>
+        <li class="recent_comment_body">你的购物车的对应编号是错的</li>
+        <li class="recent_comment_author">--我无我</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/hehheai/p/6510879.html">1. 彻底搞懂编码 GBK 和 UTF8(20173)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6509714.html">2. 浅谈WEB前后端分离(12323)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6513883.html">3. Go web开发初探(11618)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6506835.html">4. Zookeeper数据与存储(10827)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6506753.html">5. ASP.NET Core 导入导出Excel xlsx 文件(8408)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="https://www.cnblogs.com/hehheai/p/6506753.html">1. ASP.NET Core 导入导出Excel xlsx 文件(2)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6510879.html">2. 彻底搞懂编码 GBK 和 UTF8(2)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6509786.html">3. Spark读写Hbase的二种方式对比(2)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6513789.html">4. 应用EF访问SQLite数据(1)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6513801.html">5. 使用MongoDB和JSP实现一个简单的购物车系统(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/hehheai/p/6510879.html">1. 彻底搞懂编码 GBK 和 UTF8(3)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6509714.html">2. 浅谈WEB前后端分离(2)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6506835.html">3. Zookeeper数据与存储(1)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6513817.html">4. 关于android初学者必须掌握的Activity的四大知识点(1)</a></li><li><a href="https://www.cnblogs.com/hehheai/p/6506753.html">5. ASP.NET Core 导入导出Excel xlsx 文件(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2019 程序员小王啊
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<center>友情链接：<a href="http://www.taidai-tj.com/" target="_blank">回力鞋官网</a> | <a href="http://www.ai200808.com/" target="_blank">中老年服装</a> | <a href="http://wh.xhd.cn/m/ksjq/yc/753631.html" target="_blank">武汉雅思</a> | <a href="http://wh.xhd.cn/" target="_blank">武汉托福</a></center>
+<!--PageEndHtml Block End-->
+
+
+</body></html>
