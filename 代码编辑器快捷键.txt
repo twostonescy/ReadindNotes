@@ -1,0 +1,8 @@
+
+代码提示       ctrl+d
+上开新行       ctrl+enter
+下开新行       ctrl+shift+enter
+向前
+后退
+大小写转换     ctrl+u
+转换为大写     ctrl+shift+u
