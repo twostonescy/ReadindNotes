@@ -6,3 +6,14 @@
 后退
 大小写转换     ctrl+u
 转换为大写     ctrl+shift+u
+
+
+
+Android Studio
+
+相关文件      ctrl+w
+修复文档注释  ctrl+a2
+优化导入      ctrl+a6
+实现		  ctrl+alt+左键
+超类方法      ctrl+alt+右键
+查找引用      shift+f12
