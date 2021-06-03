@@ -1,0 +1,3 @@
+git强制覆盖本地命令（单条执行）  放弃本地修改, 全部使用远端代码：
+    git fetch --all && git reset --hard origin/master && git pull
+放弃本地更改  git checkout .

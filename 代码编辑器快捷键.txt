@@ -11,9 +11,25 @@
 
 Android Studio
 
-相关文件      ctrl+w
-修复文档注释  ctrl+a2
-优化导入      ctrl+a6
-实现		  ctrl+alt+左键
+补全当前语句		；
+开始新行       ctrl+shift+enter
+在当前位置之前开始新行       ctrl+enter
+切换大小写     ctrl+u
+在路径中查找   ctrl+g
+查找使用      ctrl+r
+最近的文件     ctrl+a1
+向前          ctrl+5
+后退			  ctrl+4
 超类方法      ctrl+alt+右键
-查找引用      shift+f12
+实现		  	 ctrl+alt+左键
+相关文件      ctrl+alt+w
+基本				ctrl+d
+全部展开			ctrl+3
+全部折叠			ctrl+6
+行注释			ctrl+1
+优化导入      ctrl+a6
+重命名  			ctrl+r
+Legacy Layout Inspector  ctrl+7
+修复文档注释  ctrl+a2
+显示意向动作   ctrl+w
+
