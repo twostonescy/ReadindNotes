@@ -28,8 +28,13 @@ Android Studio
 全部折叠			ctrl+6
 行注释			ctrl+1
 优化导入      ctrl+a6
-重命名  			ctrl+r
+重命名  			alt+r
+查看断点			ctrl+a3
 Legacy Layout Inspector  ctrl+7
 修复文档注释  ctrl+a2
 显示意向动作   ctrl+w
+
+固定选项卡   		ctrl+e
+
+
 
